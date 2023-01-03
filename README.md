@@ -35,6 +35,10 @@ Connect your application
 - create express server 
 
 2. Connect to cloud database introduction to CRUD
+- https://www.restapitutorial.com/lessons/httpmethods.html
+- https://cloud.mongodb.com/v2/638c4647c7ae644987ebd9c1#clusters
+- Viwe Monitoring > Collections > create database - dataPranab
+
 3. Send data to database and read data from ui
 4. Save data in database and Read all data
 5. Load data database data and show on the UI
