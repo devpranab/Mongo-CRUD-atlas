@@ -40,6 +40,8 @@ Connect your application
 - Viwe Monitoring > Collections > create database - dataPranab
 
 3. Send data to database and read data from ui
+- https://www.mongodb.com/docs/manual/tutorial/insert-documents/
+
 4. Save data in database and Read all data
 5. Load data database data and show on the UI
 6. Delete an item from the database from UI
