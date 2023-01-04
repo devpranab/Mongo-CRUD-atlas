@@ -30,6 +30,8 @@
 
       <h2 class="mt-4">Load data database data and show on the UI</h2>
       <div id="products"></div>
+      <h2 class="mt-4">Load single product & update</h2>
+      <div id="update"></div>
     </div>
 
     <!-- js code -->
@@ -43,22 +45,45 @@
             (container.innerHTML = ""),
               products.forEach((pd) => {
                 const item = document.createElement("p");
-                item.innerHTML = `<strong>${pd.name}</strong> : price: ${pd.price} quantity: ${pd.quantity} <button onclick="deleteProducts('${pd._id}')">Delete</button>`;
+                item.innerHTML = `<strong>${pd.name}</strong> : price: ${pd.price} quantity: ${pd.quantity} 
+                <button onclick="loadProduct('${pd._id}')">Update</button>
+                <button onclick="deleteProducts('${pd._id}')">Delete</button>`;
                 container.appendChild(item);
               });
           });
       };
       loadAllProducts();
 
-      const deleteProducts = id => {
+      const deleteProducts = (id) => {
         fetch(`/delete/${id}`, {
           method: "DELETE",
         })
-          .then(res => res.json())
-          .then(result => {
+          .then((res) => res.json())
+          .then((result) => {
             console.log("deleted successfully!");
           });
       };
+
+      const loadProduct = id => {
+        fetch(`product/${id}`)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            const update = document.getElementById('update');
+                    update.innerHTML = `
+                    <h3>Update: ${data.name}
+                    Price: <input type="text" value="${data.price}" id="price">
+                    <br>
+                    Quantity: <input type="text" value="${data.quantity}" id="quantity">
+                    <br>
+                    <button type="submit" onclick="updateProduct('${data._id}')">Submit</button>
+                `;
+          });
+      };
+      const updateProduct = id => {
+        console.log(id);
+      }
     </script>
+
   </body>
 </html>

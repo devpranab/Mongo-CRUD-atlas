@@ -58,4 +58,10 @@ Connect your application
 ```
 
 7. Load single product from database using id
+```js
+//add update button onclick in html
+// - index.html - const loadProduct = id => {
+// - index.js - app.get('/product/:id', (req, res) => {
+```
+
 8. Update or modify a single item and save database

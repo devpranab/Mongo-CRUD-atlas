@@ -49,6 +49,13 @@ app.delete('/delete/:id', (req, res) => {
       //res.send(result.deletedCount > 0)
     })
 });
+
+app.get('/product/:id', (req, res) => {
+  productCollection.find({_id: ObjectId(req.params.id)})
+    .toArray((err, docs) => {
+      res.send(docs[0])
+    })
+})
 });
 //Connect MongoDB End
 
