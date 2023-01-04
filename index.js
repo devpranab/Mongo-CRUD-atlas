@@ -28,7 +28,7 @@ client.connect(err => {
     const product = req.body;
     console.log(product);
     productCollection.insertOne(product)
-    .then(res => {
+    .then(result => {
       console.log("data added successfully");
       res.send("success");
     })
@@ -36,4 +36,4 @@ client.connect(err => {
 });
 //Connect MongoDB End
 
-app.listen(4003);
+app.listen(4003); 
