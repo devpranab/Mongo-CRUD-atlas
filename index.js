@@ -56,6 +56,18 @@ app.get('/product/:id', (req, res) => {
       res.send(docs[0])
     })
 })
+
+app.patch('/update/:id', (req, res) => {
+  productCollection.updateOne(
+    {_id: ObjectId(req.params.id)},
+    {
+      $set: { price: req.body.price, quantity: req.body.quantity }
+    }
+  ).then(result => {
+    console.log(result);
+    //res.send(result.modifiedCount > 0)
+  })
+})
 });
 //Connect MongoDB End
 

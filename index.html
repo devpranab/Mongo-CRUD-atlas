@@ -64,13 +64,13 @@
           });
       };
 
-      const loadProduct = id => {
+      const loadProduct = (id) => {
         fetch(`product/${id}`)
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             console.log(data);
-            const update = document.getElementById('update');
-                    update.innerHTML = `
+            const update = document.getElementById("update");
+            update.innerHTML = `
                     <h3>Update: ${data.name}
                     Price: <input type="text" value="${data.price}" id="price">
                     <br>
@@ -80,9 +80,24 @@
                 `;
           });
       };
-      const updateProduct = id => {
-        console.log(id);
-      }
+      
+      const updateProduct = (id) => {
+        const price = document.getElementById("price").value;
+        const quantity = document.getElementById("quantity").value;
+        const product = { id, price, quantity };
+
+        fetch(`/update/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(product),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            result && loadAllProducts();
+            document.getElementById("update").innerHTML = "";
+          });
+      };
+
     </script>
 
   </body>

@@ -65,3 +65,9 @@ Connect your application
 ```
 
 8. Update or modify a single item and save database
+```js
+//index.html - const updateProduct = id => {
+//index.js - app.patch
+```
+9. Make CRUD operation working smoothly
+- Modify code
