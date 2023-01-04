@@ -47,20 +47,24 @@
                 const item = document.createElement("p");
                 item.innerHTML = `<strong>${pd.name}</strong> : price: ${pd.price} quantity: ${pd.quantity} 
                 <button onclick="loadProduct('${pd._id}')">Update</button>
-                <button onclick="deleteProducts('${pd._id}')">Delete</button>`;
+                <button onclick="deleteProducts(event, '${pd._id}')">Delete</button>`;
                 container.appendChild(item);
               });
           });
       };
       loadAllProducts();
 
-      const deleteProducts = (id) => {
+      const deleteProducts = (event, id) => {
+        console.log(event.target.parentNode);
         fetch(`/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((result) => {
             console.log("deleted successfully!");
+            if(result){
+             event.target.parentNode.style.display="none";
+            }
           });
       };
 
@@ -80,7 +84,7 @@
                 `;
           });
       };
-      
+
       const updateProduct = (id) => {
         const price = document.getElementById("price").value;
         const quantity = document.getElementById("quantity").value;
