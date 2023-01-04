@@ -49,6 +49,13 @@ Connect your application
 //index.js -   app.get('/products', (req, res) => {
 //const loadAllProducts = () => {
 ```
+
 6. Delete an item from the database from UI
+```js
+//add delete button onclick in html
+//index.html -  const deleteProducts = id => {
+//index.js -  app.delete('/delete/:id', (req, res) => {
+```
+
 7. Load single product from database using id
 8. Update or modify a single item and save database

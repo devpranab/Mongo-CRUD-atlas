@@ -1,5 +1,6 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const ObjectId = require('mongodb').ObjectId;
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -39,6 +40,15 @@ client.connect(err => {
       res.send("success");
     })
   });
+
+app.delete('/delete/:id', (req, res) => {
+  console.log(req.params.id);
+  productCollection.deleteOne({_id: ObjectId(req.params.id)})
+    .then(result => {
+      console.log(result);
+      //res.send(result.deletedCount > 0)
+    })
+});
 });
 //Connect MongoDB End
 
