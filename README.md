@@ -41,6 +41,7 @@ Connect your application
 
 3. Send data to database and read data from ui
 - https://www.mongodb.com/docs/manual/tutorial/insert-documents/
+- First get index.html file by localhost:4002 then submit
 
 4. Save data in database and Read all data
 5. Load data database data and show on the UI

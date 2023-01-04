@@ -1,27 +1,38 @@
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const bodyParser = require("body-parser");
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 app.get("/", (req, res) => {
-  res.send("express working");
+  res.sendFile(__dirname + '/index.html')
 });
 
-
 //Connect MongoDB Start
-const uri = "mongodb+srv://userPranab:Pranab746543587345@cluster0.i8jndut.mongodb.net/?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://userPranab:Pranab746543587345@cluster0.i8jndut.mongodb.net/?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1,
+});
 
 client.connect(err => {
-  const collection = client.db("dataPranab").collection("products");
+  const productCollection = client.db("dataPranab").collection("products");
   // perform actions on the collection object
-  const product = {name: "oil", price: 150, quantity:4};
-  collection.insertOne(product)
-  .then(result => {
-    console.log("one product added in database");
-  })
-  console.log("database connected");
+  app.post("/addProduct", (req, res) => {
+    const product = req.body;
+    console.log(product);
+    productCollection.insertOne(product)
+    .then(res => {
+      console.log("data added successfully");
+      res.send("success");
+    })
+  });
 });
 //Connect MongoDB End
 
