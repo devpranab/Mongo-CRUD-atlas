@@ -27,7 +27,29 @@
         <br />
         <button type="submit">Add Product</button>
       </form>
+
+      <h2 class="mt-4">Load data database data and show on the UI</h2>
+      <div id="products"></div>
     </div>
+
+    <!-- js code -->
+    <script>
+      const loadAllProducts = () => {
+        fetch("/products")
+          .then((res) => res.json())
+          .then((products) => {
+            console.log(products);
+            const container = document.getElementById("products");
+            (container.innerHTML = ""),
+              products.forEach((pd) => {
+                const item = document.createElement("p");
+                item.innerHTML = `<strong>${pd.name}</strong> : price: ${pd.price} quantity: ${pd.quantity}`;
+                container.appendChild(item);
+              });
+          });
+      };
+      loadAllProducts();
+    </script>
 
   </body>
 </html>

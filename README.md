@@ -45,6 +45,10 @@ Connect your application
 
 4. Save data in database and Read all data
 5. Load data database data and show on the UI
+```js
+//index.js -   app.get('/products', (req, res) => {
+//const loadAllProducts = () => {
+```
 6. Delete an item from the database from UI
 7. Load single product from database using id
 8. Update or modify a single item and save database

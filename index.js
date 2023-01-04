@@ -24,6 +24,12 @@ const client = new MongoClient(uri, {
 client.connect(err => {
   const productCollection = client.db("dataPranab").collection("products");
   // perform actions on the collection object
+  app.get("/products", (req, res) => {
+    productCollection.find({}).toArray((err, documents) => {
+      res.send(documents);
+    })
+  });
+
   app.post("/addProduct", (req, res) => {
     const product = req.body;
     console.log(product);
